@@ -14,19 +14,18 @@ class Day07() : GameBase2022() {
     private val regex_dir = Regex("dir (.+)")
     private val regex_file = Regex("(\\d+) (.+)")
 
+    private val maximumSize: Long = 100000
+    private var minimumSize: Long = 0
+
     override fun solvePartOne() {
         reset()
         loadInputPartOne()
-        val maximumSize: Long = 100000
-        findAllFolderWithMaximumSize(maximumSize, rootFolder)
         logger.info("Total size of all folders with a maximumsize of $maximumSize is ${result.sumOf { it.folderSize() }}")
     }
 
     override fun solvePartTwo() {
         reset()
         loadInputPartTwo()
-        val minimumSize: Long = 30000000 - calculateFreeSpace(70000000)
-        findAllFolderWithMinimumSize(minimumSize, rootFolder)
         logger.info(
             "Size of the smallest folder with a minimumsize of $minimumSize is ${
                 result.minBy { it.folderSize() }.folderSize()
@@ -39,24 +38,17 @@ class Day07() : GameBase2022() {
     }
 
     fun loadInputPartOne() {
-        openAndParseFile(this::parseLinePartOne)
+        openAndParseFile(this::parseLine)
+        findAllFolderWithMaximumSize(maximumSize, rootFolder)
     }
 
     fun loadInputPartTwo() {
-        openAndParseFile(this::parseLinePartTwo)
+        openAndParseFile(this::parseLine)
+        minimumSize = 30000000 - calculateFreeSpace(70000000)
+        findAllFolderWithMinimumSize(minimumSize, rootFolder)
     }
 
-    private fun parseLinePartOne(line: String) {
-        if (line.isNotBlank()) {
-            if (line.startsWith("$")) {
-                processCommand(line)
-            } else {
-                processFolderOrFile(line)
-            }
-        }
-    }
-
-    fun parseLinePartTwo(line: String) {
+    private fun parseLine(line: String) {
         if (line.isNotBlank()) {
             if (line.startsWith("$")) {
                 processCommand(line)
