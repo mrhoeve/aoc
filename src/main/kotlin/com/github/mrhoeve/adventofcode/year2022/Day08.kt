@@ -48,12 +48,12 @@ class Day08() : GameBase2022() {
         rowOfTrees.forEachIndexed { index, tree ->
             when (index) {
                 0, rowOfTrees.size - 1 -> tree.isVisible = true
-                else -> checkVisibilityOfTree(tree, currentIndexOfRowOfTrees, index)
+                else -> checkVisibilityOfTreeAndCalculateScenicScore(tree, currentIndexOfRowOfTrees, index)
             }
         }
     }
 
-    private fun checkVisibilityOfTree(currentTree: Tree, currentRowIndex: Int, currentTreeIndex: Int) {
+    private fun checkVisibilityOfTreeAndCalculateScenicScore(currentTree: Tree, currentRowIndex: Int, currentTreeIndex: Int) {
         val currentTreeHeight = currentTree.height
         var scenicScore: Int = 0
         // check columns above
