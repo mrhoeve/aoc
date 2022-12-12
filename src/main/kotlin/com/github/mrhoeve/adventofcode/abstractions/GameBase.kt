@@ -6,6 +6,10 @@ import org.slf4j.LoggerFactory
 abstract class GameBase : Game {
     var logger = LoggerFactory.getLogger(this.javaClass)
 
+    override fun initializeGame() {
+        // Base implementation, can be overriden when necessary
+    }
+
     fun openAndParseFile(parseMethod: (input: String) -> Unit): Unit {
         try {
             this.javaClass.getResourceAsStream(inputFile())?.bufferedReader()?.forEachLine { line ->

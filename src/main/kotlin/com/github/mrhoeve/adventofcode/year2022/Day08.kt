@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component
 class Day08() : GameBase2022() {
     private val forest: MutableList<MutableList<Tree>> = mutableListOf()
 
-    init {
+    override fun initializeGame() {
+        super.initializeGame()
         loadInput()
     }
 

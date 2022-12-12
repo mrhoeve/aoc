@@ -9,7 +9,8 @@ class Day01() : GameBase2022() {
     private val listOfCaloriesPerElf: MutableList<CaloriesPerElf> = mutableListOf()
     private var currentElf = CaloriesPerElf()
 
-    init {
+    override fun initializeGame() {
+        super.initializeGame()
         loadInput()
     }
 

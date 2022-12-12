@@ -11,6 +11,7 @@ class ChooseGameToSolve(private val games: List<Game>) {
     fun runGame() {
         // TOOD: The idea is to build a menu based on the year and on the given order.
         // Until then: just play the last game (typically the game of that day ;-))
+        games.last().initializeGame()
         games.last().solvePartOne()
         games.last().solvePartTwo()
     }
